@@ -1,7 +1,6 @@
-'use strict'
-
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const autoprefixer = require('autoprefixer');  // Import autoprefixer
 
 module.exports = {
   mode: 'development',
@@ -17,5 +16,27 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' })
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.(scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  autoprefixer({})  // Use the imported autoprefixer here
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
