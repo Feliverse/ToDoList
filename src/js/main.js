@@ -27,6 +27,7 @@ tasks.forEach(task => {
 
   const taskText = document.createElement('span');
   taskText.textContent = task.text;
+  taskText.classList.add('flex-grow-1', 'ms-2');
   if (task.completed) {
     taskText.classList.add('text-decoration-line-through');
   }
